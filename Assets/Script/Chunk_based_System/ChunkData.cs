@@ -1,16 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ChunkData : MonoBehaviour
+[System.Serializable]
+public class ChunkData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Vector2 chunkIndex;  // The index of the chunk in the grid.
+    public List<GameObject> uncollectedObjects = new List<GameObject>();  // Store uncollected objects in this chunk.
+
+    // Constructor to initialize ChunkData with a given index.
+    public ChunkData(Vector2 index)
     {
-        
+        chunkIndex = index;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Method to add uncollected objects before chunk is destroyed.
+    public void StoreUncollectedObject(GameObject obj)
     {
-        
+        uncollectedObjects.Add(obj);
+    }
+
+    // Method to respawn uncollected objects when the chunk is regenerated.
+    public void RestoreObjects()
+    {
+        foreach (var obj in uncollectedObjects)
+        {
+            obj.SetActive(true);
+            // Additional logic to reset the object position can go here.
+        }
     }
 }
