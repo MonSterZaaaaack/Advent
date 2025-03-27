@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 moveVelocity = new Vector3(moveDirection.x, 0, moveDirection.y);
             moveVelocity *= speed;
-            rb.AddForce(moveVelocity, ForceMode.VelocityChange);
+            rb.linearVelocity = moveVelocity;
         }
         else
         {

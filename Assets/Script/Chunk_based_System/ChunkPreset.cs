@@ -1,16 +1,21 @@
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ChunkPreset : MonoBehaviour
+[CreateAssetMenu(fileName = "New Chunk Preset", menuName = "ChunkSystem/New Chunk Preset")]
+public class ChunkPreset : ScriptableObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public List<ChunkSetting> chunkSettings;
+}
+[Serializable]
+public class ChunkSetting
+{
+    public GameObject prefab;
+    public int weight;
+    public ChunkSetting()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        prefab = null;
+        weight = 0;
     }
 }
